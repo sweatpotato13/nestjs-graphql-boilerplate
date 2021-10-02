@@ -1,0 +1,92 @@
+version: "3.6"
+services:
+    redis:
+        image: redis:alpine
+        container_name: app-redis
+        restart: always
+        ports:
+            - "${REDIS_PORT}:6379"
+        command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+        environment:
+            - REDIS_REPLICATION_MODE=master
+        networks:
+            - backend
+    redis-commander:
+        image: rediscommander/redis-commander:latest
+        container_name: app-redis-commander
+        restart: always
+        depends_on:
+            - redis
+        environment:
+            - REDIS_HOSTS=local:redis:6379:${REDIS_DB}:${REDIS_PASSWORD} #label:hostname:port:dbIndex:password
+        ports:
+            - "${REDIS_COMMANDER_PORT}:8081"
+        networks:
+            - backend
+    postgres:
+        image: postgres:12.2
+        container_name: app-postgres
+        restart: always
+        ports:
+            - "${PG_PORT}:5432"
+        volumes:
+            - ${PG_VOLUME}:/var/lib/postgresql/data/pgdata
+        environment:
+            POSTGRES_DB: ${PG_DB_NAME}
+            POSTGRES_PASSWORD: ${PG_PASSWORD}
+            PGDATA: /var/lib/postgresql/data/pgdata
+        networks:
+            - backend
+    graphql-engine:
+        image: hasura/graphql-engine:v1.3.2
+        container_name: app-hasura
+        restart: always
+        ports:
+            - "${HASURA_GRAPHQL_PORT}:8080"
+        depends_on:
+            - "postgres"
+        environment:
+            HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:${PG_PASSWORD}@postgres:5432/${PG_DB_NAME}
+            HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+            HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+            ## uncomment next line to set an admin secret
+            HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+            HASURA_GRAPHQL_JWT_SECRET: "${HASURA_GRAPHQL_JWT_SECRET}"
+            HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
+        networks:
+            - backend
+    app:
+        build:
+            context: "."
+        container_name: app
+        command: ${CONTAINER_COMMAND}
+        restart: always
+        deploy:
+            mode: replicated
+            replicas: ${CONTAINER_SCALE}
+        depends_on:
+            - redis
+            - redis-commander
+            - postgres
+            - pgadmin
+            - graphql-engine
+            - eventstore
+        env_file:
+            - "./.env"
+        ports:
+            - "${PORT}:9000"
+        volumes:
+            - "./logs:/app/logs"
+        links:
+            - redis
+            - redis-commander
+            - postgres
+            - pgadmin
+            - graphql-engine
+            - eventstore
+        networks:
+            - backend
+
+networks:
+    backend:
+        driver: bridge

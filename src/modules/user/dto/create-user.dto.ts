@@ -9,4 +9,10 @@ export class CreateUserDto {
   @IsString()
   @ApiPropertyOptional()
   lastName: string;
+
+  public static of(params: Partial<CreateUserDto>): CreateUserDto {
+    const createuserdto = new CreateUserDto();
+    Object.assign(createuserdto, params);
+    return createuserdto;
+  }
 }

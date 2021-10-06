@@ -13,4 +13,10 @@ export class UpdateUserDto {
   @IsBoolean()
   @ApiPropertyOptional()
   isActive: boolean;
+
+  public static of(params: Partial<UpdateUserDto>): UpdateUserDto {
+    const updateuserdto = new UpdateUserDto();
+    Object.assign(updateuserdto, params);
+    return updateuserdto;
+  }
 }

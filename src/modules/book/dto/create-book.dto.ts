@@ -7,4 +7,10 @@ export class CreateBookDto {
 
   @Field(() => Int)
   price: number;
+
+  public static of(params: Partial<CreateBookDto>): CreateBookDto {
+    const createbookdto = new CreateBookDto();
+    Object.assign(createbookdto, params);
+    return createbookdto;
+  }
 }

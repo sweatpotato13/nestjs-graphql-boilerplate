@@ -1,5 +1,5 @@
 import * as GraphQLSchema from "@common/graphql/generator/graphql.schema";
-import { logger } from "@common/winston";
+import { logger } from "@src/config/winston";
 import { UserInputError } from "apollo-server-core";
 import { validate } from "class-validator";
 import {

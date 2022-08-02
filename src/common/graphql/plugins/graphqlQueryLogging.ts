@@ -1,4 +1,4 @@
-import { logger } from "@common/winston";
+import { logger } from "@src/config/winston";
 import { config } from "@config";
 import { Plugin } from "@nestjs/graphql";
 import { ApolloServerPlugin } from "apollo-server-plugin-base";

@@ -1,4 +1,4 @@
-import { logger } from "@common/winston";
+import { logger } from "@src/config/winston";
 import {
     CallHandler,
     ExecutionContext,

@@ -1,5 +1,5 @@
 import { AuthenticationError,formatError } from "@common/errors/graphql.error";
-import { logger } from "@common/winston";
+import { logger } from "@src/config/winston";
 import { config, GqlModuleConfig, RedisModuleConfig } from "@config";
 import { Inject,Injectable } from "@nestjs/common";
 import { ConfigType } from "@nestjs/config";

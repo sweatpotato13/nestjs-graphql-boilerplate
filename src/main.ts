@@ -1,4 +1,4 @@
-import { errorStream,logger } from "@common/winston";
+import { errorStream,logger } from "@src/config/winston";
 import { config } from "@config";
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
@@ -72,7 +72,6 @@ async function bootstrap() {
             })
         );
 
-        // NOTE: size limit
         app.use("*", (req, res, next) => {
             const query = req.query.query || req.body.query || "";
             if (query.length > 2000) {

@@ -1,8 +1,8 @@
+import { logger } from "@common/winston";
+import { config } from "@config";
 import { Plugin } from "@nestjs/graphql";
 import { ApolloServerPlugin } from "apollo-server-plugin-base";
 import { GraphQLRequestContext } from "apollo-server-types";
-import { logger } from "@common/winston";
-import { config } from "@config";
 
 @Plugin()
 export class GraphQLQueryLoggingPlugin implements ApolloServerPlugin {

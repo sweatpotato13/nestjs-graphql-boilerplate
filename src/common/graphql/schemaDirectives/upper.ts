@@ -1,5 +1,5 @@
+import { defaultFieldResolver,GraphQLField } from "graphql";
 import { SchemaDirectiveVisitor } from "graphql-tools";
-import { GraphQLField, defaultFieldResolver } from "graphql";
 
 class UpperCaseDirective extends SchemaDirectiveVisitor {
     visitFieldDefinition(field: GraphQLField<any, any>) {

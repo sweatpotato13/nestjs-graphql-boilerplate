@@ -1,10 +1,11 @@
+import { JwtModuleConfig } from "@config";
 import { Inject, Injectable } from "@nestjs/common";
 import { ConfigType } from "@nestjs/config";
-import jwt, { Algorithm } from "jsonwebtoken";
-import { ITokenClaim } from "./auth.interface";
 import { RedisService } from "@shared/modules/database/redis/redis.service";
-import { JwtModuleConfig } from "@config";
 import { genRandomBytesWithBase58 } from "@shared/utils";
+import jwt, { Algorithm } from "jsonwebtoken";
+
+import { ITokenClaim } from "./auth.interface";
 
 @Injectable()
 export class AuthService {

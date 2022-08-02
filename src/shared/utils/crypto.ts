@@ -1,11 +1,11 @@
-import crypto from "crypto";
-import { Aes } from "eosjs-ecc";
-import { ecc } from "eosjs/dist/eosjs-ecc-migration";
 import bs58 from "bs58";
-import { split, combine } from "shamirs-secret-sharing-ts";
-import { PrivateKey } from "eosjs/dist/PrivateKey";
+import crypto from "crypto";
 import { ec } from "elliptic";
+import { ecc } from "eosjs/dist/eosjs-ecc-migration";
+import { PrivateKey } from "eosjs/dist/PrivateKey";
+import { Aes } from "eosjs-ecc";
 import KeyEncoder from "key-encoder";
+import { combine,split } from "shamirs-secret-sharing-ts";
 
 export const genRandomBytesWithBase58 = (bytes: number): string => {
     return bs58.encode(crypto.randomBytes(bytes));

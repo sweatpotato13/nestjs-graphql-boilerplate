@@ -1,5 +1,6 @@
 // https://www.apollographql.com/docs/apollo-server/schema/directives/
 import { createRateLimitDirective } from "graphql-rate-limit";
+
 import PermissionDirective from "./permission";
 import UpperCaseDirective from "./upper";
 import ValidateDirective from "./validate";

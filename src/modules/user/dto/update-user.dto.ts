@@ -1,5 +1,5 @@
-import { IsString, IsBoolean } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
+import { IsBoolean,IsString } from 'class-validator';
 
 export class UpdateUserDto {
   @IsString()

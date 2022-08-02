@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
-import { plainToClass } from "class-transformer";
 import { BookDto } from "@src/common/graphql/generator/graphql.schema";
+import { plainToClass } from "class-transformer";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Book {

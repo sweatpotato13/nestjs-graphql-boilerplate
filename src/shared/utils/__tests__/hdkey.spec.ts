@@ -1,4 +1,4 @@
-import HDKey, { walletPath, getPrivateKey } from "@shared/utils/hdkey";
+import HDKey, { getPrivateKey,walletPath } from "@shared/utils/hdkey";
 
 describe("@hdkey unit test", () => {
     test("#Generate Hdkey test", () => {

@@ -1,6 +1,6 @@
+import { AuthenticationError,ForbiddenError } from "apollo-server-core";
+import { defaultFieldResolver,GraphQLField } from "graphql";
 import { SchemaDirectiveVisitor } from "graphql-tools";
-import { ForbiddenError, AuthenticationError } from "apollo-server-core";
-import { GraphQLField, defaultFieldResolver } from "graphql";
 import { getManager } from "typeorm";
 
 class PermissionDirective extends SchemaDirectiveVisitor {

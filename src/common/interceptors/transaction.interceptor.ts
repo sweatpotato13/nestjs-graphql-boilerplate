@@ -1,9 +1,8 @@
 import {
-    Injectable,
-    NestInterceptor,
+    CallHandler,
     ExecutionContext,
-    CallHandler
-} from "@nestjs/common";
+    Injectable,
+    NestInterceptor} from "@nestjs/common";
 import { Observable, throwError } from "rxjs";
 import { catchError, finalize, tap } from "rxjs/operators";
 import { getConnection } from "typeorm";

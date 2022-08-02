@@ -1,6 +1,6 @@
 import { uuid as uuidv4 } from "@shared/utils/uuid";
-import uuid from "uuid";
 import BN from "bn.js";
+import uuid from "uuid";
 
 describe("@uuid unit test", () => {
     test("#uuid test", () => {

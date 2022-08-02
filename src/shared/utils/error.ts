@@ -13,4 +13,4 @@ class RateLimitError extends ApolloError {
     }
 }
 
-export { AuthenticationError, UserInputError, ValidationError, RateLimitError };
+export { AuthenticationError, RateLimitError,UserInputError, ValidationError };

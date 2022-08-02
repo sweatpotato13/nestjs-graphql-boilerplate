@@ -1,14 +1,14 @@
-import { SchemaDirectiveVisitor } from "graphql-tools";
+import * as GraphQLSchema from "@common/graphql/generator/graphql.schema";
+import { logger } from "@common/winston";
+import { UserInputError } from "apollo-server-core";
+import { validate } from "class-validator";
 import {
     defaultFieldResolver,
     GraphQLArgument,
     GraphQLField,
     GraphQLObjectType
 } from "graphql";
-import { validate } from "class-validator";
-import { logger } from "@common/winston";
-import { UserInputError } from "apollo-server-core";
-import * as GraphQLSchema from "@common/graphql/generator/graphql.schema";
+import { SchemaDirectiveVisitor } from "graphql-tools";
 
 class ValidateDirective extends SchemaDirectiveVisitor {
     visitArgumentDefinition(

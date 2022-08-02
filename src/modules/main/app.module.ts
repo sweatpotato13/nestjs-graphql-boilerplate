@@ -1,24 +1,24 @@
-import { Module } from "@nestjs/common";
-import { APP_INTERCEPTOR } from "@nestjs/core";
 import { LoggingInterceptor } from "@common/interceptors/logging.interceptor";
+import {
+    GqlModuleConfig,
+    RedisModuleConfig,
+    TypeOrmModuleConfig,
+} from "@config";
+// import { UsersModule } from "@modules/users/users.module";
+import { BookModule } from "@modules/book/book.module";
+import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
+import { APP_INTERCEPTOR } from "@nestjs/core";
 import { GraphQLModule } from "@nestjs/graphql";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { AuthModule } from "@shared/modules/auth/auth.module";
 import { GqlConfigService } from "@src/common/graphql/graphql.config.service";
 import { TypeOrmConfigService } from "@src/common/typeorm/typeorm.config.service";
 import { Connection } from "typeorm";
-import { AuthModule } from "@shared/modules/auth/auth.module";
-// import { UsersModule } from "@modules/users/users.module";
-import { BookModule } from "@modules/book/book.module";
-import { UserHttpModule } from "../user/user-http.module";
-import {
-    GqlModuleConfig,
-    TypeOrmModuleConfig,
-    RedisModuleConfig,
-} from "@config";
 
-import { AppService } from "./app.service";
+import { UserHttpModule } from "../user/user-http.module";
 import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
 
 @Module({
     imports: [

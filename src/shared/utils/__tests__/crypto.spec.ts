@@ -1,29 +1,28 @@
 import {
-    genRandomBytesWithBase58,
-    scrypt512,
-    scrypt256,
-    verifyScrypt512,
-    verifyScrypt256,
-    encryptWithAES256,
     decryptWithAES256,
-    signHashWithECC,
-    recoverHashWithECC,
-    publicKeyEncrypt,
     decryptWithPrivateKey,
-    splitKey,
-    mergeKey,
-    sha256,
-    getSortedPrivateKeys,
-    genRsa256KeyPair,
+    encryptWithAES256,
     genEccKeyPair,
-    pem2str,
-    str2pem,
+    genRandomBytesWithBase58,
+    genRsa256KeyPair,
     getRawEccPrivateKey,
-    getRawEccPublicKey
-} from "@shared/utils/crypto";
-import jwt, { Algorithm } from "jsonwebtoken";
-import crypto from "crypto";
+    getRawEccPublicKey,
+    getSortedPrivateKeys,
+    mergeKey,
+    pem2str,
+    publicKeyEncrypt,
+    recoverHashWithECC,
+    scrypt256,
+    scrypt512,
+    sha256,
+    signHashWithECC,
+    splitKey,
+    str2pem,
+    verifyScrypt256,
+    verifyScrypt512} from "@shared/utils/crypto";
 import bs58 from "bs58";
+import crypto from "crypto";
+import jwt, { Algorithm } from "jsonwebtoken";
 
 describe("@crypto unit test", () => {
     test("#genRandomBytesWithBase58", () => {

@@ -3,16 +3,16 @@ import { config as _config } from "dotenv";
 _config({ path: __dirname + "/../../.env" });
 (process as any).send = process.send || function() {};
 
-import TypeOrmModuleConfig from "./modules/typeorm";
 import GqlModuleConfig from "./modules/graphql";
 import JwtModuleConfig from "./modules/jwt";
 import RedisModuleConfig from "./modules/redis";
+import TypeOrmModuleConfig from "./modules/typeorm";
 
 export {
-    TypeOrmModuleConfig,
     GqlModuleConfig,
     JwtModuleConfig,
     RedisModuleConfig,
+    TypeOrmModuleConfig,
 };
 
 export const config = {
@@ -29,7 +29,7 @@ export const config = {
     // Server
     host: process.env.HOST || "0.0.0.0",
     port: parseInt(process.env.PORT) || 9000,
-    rateLimitMax: process.env.RATE_LIMIT_MAX || 10000,
+    rateLimitMax: parseInt(process.env.RATE_LIMIT_MAX) || 10000,
     accessToken: process.env.ACCESS_TOKEN || "x-app-access-token",
     swaggerPath: process.env.SWAGGER_PATH || "/api"
 };

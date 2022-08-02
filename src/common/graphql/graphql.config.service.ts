@@ -1,22 +1,21 @@
-import { Injectable, Inject } from "@nestjs/common";
+import { AuthenticationError,formatError } from "@common/errors/graphql.error";
 import { logger } from "@common/winston";
-import { GqlOptionsFactory, GqlModuleOptions } from "@nestjs/graphql";
-import { RedisCache } from "apollo-server-cache-redis";
-import { PubSub } from "graphql-subscriptions";
-import { formatError, AuthenticationError } from "@common/errors/graphql.error";
-import GraphQLJSON, { GraphQLJSONObject } from "graphql-type-json";
-import depthLimit from "graphql-depth-limit";
-import { AuthService } from "@shared/modules/auth/auth.service";
-
-import { ConfigType } from "@nestjs/config";
 import { config, GqlModuleConfig, RedisModuleConfig } from "@config";
+import { Inject,Injectable } from "@nestjs/common";
+import { ConfigType } from "@nestjs/config";
+import { GqlModuleOptions,GqlOptionsFactory } from "@nestjs/graphql";
+import { AuthService } from "@shared/modules/auth/auth.service";
+import { RedisCache } from "apollo-server-cache-redis";
+import depthLimit from "graphql-depth-limit";
+import { PubSub } from "graphql-subscriptions";
+import GraphQLJSON, { GraphQLJSONObject } from "graphql-type-json";
+import { join } from "path";
 
 import {
     GraphQLErrorHandlerPlugin,
     GraphQLQueryLoggingPlugin,
     GraphQLResponseCachePlugin
 } from "./plugins";
-import { join } from "path";
 
 const pubsub = new PubSub();
 

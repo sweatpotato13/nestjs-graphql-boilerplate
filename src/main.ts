@@ -1,19 +1,20 @@
+import { errorStream,logger } from "@common/winston";
+import { config } from "@config";
+import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
-import { ValidationPipe } from "@nestjs/common";
-import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
-import { logger, errorStream } from "@common/winston";
-import { AppModule } from "./modules/main/app.module";
+import { DocumentBuilder,SwaggerModule } from "@nestjs/swagger";
 import bodyParser from "body-parser";
+import rTracer from "cls-rtracer";
+import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import morgan from "morgan";
-import rateLimit from "express-rate-limit";
-import rTracer from "cls-rtracer";
 import {
     initializeTransactionalContext,
     patchTypeORMRepositoryWithBaseRepository
 } from "typeorm-transactional-cls-hooked";
-import { config } from "@config";
+
+import { AppModule } from "./modules/main/app.module";
 
 initializeTransactionalContext(); // Initialize cls-hooked
 patchTypeORMRepositoryWithBaseRepository(); // patch Repository with BaseRepository.
@@ -23,6 +24,7 @@ async function bootstrap() {
         const app = await NestFactory.create<NestExpressApplication>(
             AppModule,
         );
+
         const documentOptions = new DocumentBuilder()
             .setTitle(config.appTitle)
             .setDescription(config.appDescription)
@@ -33,6 +35,7 @@ async function bootstrap() {
             skipMissingProperties: true,
             validationError: { target: false }
         };
+
         app.useGlobalPipes(new ValidationPipe(validationOptions));
         app.setGlobalPrefix(config.apiPrefix);
 

@@ -1,7 +1,8 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { TypeOrmConfigService } from "./typeorm.config.service";
 import { TypeOrmModuleConfig } from "@config";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { Test, TestingModule } from "@nestjs/testing";
+
+import { TypeOrmConfigService } from "./typeorm.config.service";
 
 describe("RepositoryConfig", () => {
     let configService: TypeOrmConfigService;

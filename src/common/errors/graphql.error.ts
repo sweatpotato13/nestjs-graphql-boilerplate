@@ -1,7 +1,6 @@
+import { logger } from "@common/winston";
 import { ApolloError } from "apollo-server-errors";
 import { GraphQLError } from "graphql";
-
-import { logger } from "@common/winston";
 
 export interface IErrorProperties {
     userId: string;

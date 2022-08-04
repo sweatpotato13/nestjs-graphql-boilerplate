@@ -11,20 +11,14 @@ export class CreateBookDto {
     price: number;
 }
 
-export class GetAuthMessageResponse {
-    message: string;
-}
-
-export abstract class IQuery {
-    abstract getAuthMessage(accountName: string): GetAuthMessageResponse | Promise<GetAuthMessageResponse>;
-
-    abstract getBooks(): BookDto[] | Promise<BookDto[]>;
-}
-
 export class BookDto {
     id: string;
     name: string;
     price: number;
+}
+
+export abstract class IQuery {
+    abstract getBooks(): BookDto[] | Promise<BookDto[]>;
 }
 
 export abstract class IMutation {

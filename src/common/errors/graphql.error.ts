@@ -1,4 +1,4 @@
-import { logger } from "@src/config/winston";
+import { logger } from "@common/winston";
 import { ApolloError } from "apollo-server-errors";
 import { GraphQLError } from "graphql";
 

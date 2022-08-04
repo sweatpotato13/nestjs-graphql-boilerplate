@@ -107,7 +107,7 @@ export const decryptWithAES256 = (
         );
         decryptedValue += decipher.final("utf8");
         return decryptedValue;
-    } catch (error) {
+    } catch (error: any) {
         throw new Error(error.message);
     }
 };
@@ -122,7 +122,7 @@ export const sha256 = (message: string): string => {
 export const signHashWithECC = (data: string, privateKey: string): string => {
     try {
         return ecc.signHash(Buffer.from(data), privateKey);
-    } catch (error) {
+    } catch (error: any) {
         throw new Error(error.message);
     }
 };
@@ -130,7 +130,7 @@ export const signHashWithECC = (data: string, privateKey: string): string => {
 export const recoverHashWithECC = (signature: string, data: string): string => {
     try {
         return ecc.recoverHash(signature, Buffer.from(data));
-    } catch (error) {
+    } catch (error: any) {
         throw new Error(error.message);
     }
 };
@@ -155,7 +155,7 @@ export const publicKeyEncrypt = (
         enc.nonce = enc.nonce.toString();
         enc.message = bs58.encode(enc.message);
         return JSON.stringify(enc);
-    } catch (error) {
+    } catch (error: any) {
         throw new Error(error.message);
     }
 };
@@ -182,7 +182,7 @@ export const decryptWithPrivateKey = (
                 encryptedData.checksum
             )
         );
-    } catch (error) {
+    } catch (error: any) {
         throw new Error(error.message);
     }
 };

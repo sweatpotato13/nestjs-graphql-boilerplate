@@ -29,7 +29,7 @@ export const config = {
     // Server
     host: process.env.HOST || "0.0.0.0",
     port: parseInt(process.env.PORT) || 9000,
-    rateLimitMax: parseInt(process.env.RATE_LIMIT_MAX) || 10000,
+    rateLimitMax: process.env.RATE_LIMIT_MAX || 10000,
     accessToken: process.env.ACCESS_TOKEN || "x-app-access-token",
     swaggerPath: process.env.SWAGGER_PATH || "/api"
 };

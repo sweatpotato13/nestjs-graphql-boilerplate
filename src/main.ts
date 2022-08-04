@@ -1,4 +1,4 @@
-import { errorStream,logger } from "@src/config/winston";
+import { errorStream,logger } from "@common/winston";
 import { config } from "@config";
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
@@ -24,7 +24,6 @@ async function bootstrap() {
         const app = await NestFactory.create<NestExpressApplication>(
             AppModule,
         );
-
         const documentOptions = new DocumentBuilder()
             .setTitle(config.appTitle)
             .setDescription(config.appDescription)
@@ -35,7 +34,6 @@ async function bootstrap() {
             skipMissingProperties: true,
             validationError: { target: false }
         };
-
         app.useGlobalPipes(new ValidationPipe(validationOptions));
         app.setGlobalPrefix(config.apiPrefix);
 
@@ -72,6 +70,7 @@ async function bootstrap() {
             })
         );
 
+        // NOTE: size limit
         app.use("*", (req, res, next) => {
             const query = req.query.query || req.body.query || "";
             if (query.length > 2000) {

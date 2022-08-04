@@ -1,4 +1,4 @@
-import { logger } from "@src/config/winston";
+import { logger } from "@common/winston";
 import { RedisModuleConfig } from "@config";
 import { Inject, Injectable } from "@nestjs/common";
 import { ConfigType } from "@nestjs/config";

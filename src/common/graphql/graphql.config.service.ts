@@ -1,5 +1,5 @@
 import { AuthenticationError,formatError } from "@common/errors/graphql.error";
-import { logger } from "@src/config/winston";
+import { logger } from "@common/winston";
 import { config, GqlModuleConfig, RedisModuleConfig } from "@config";
 import { Inject,Injectable } from "@nestjs/common";
 import { ConfigType } from "@nestjs/config";
@@ -8,7 +8,6 @@ import { AuthService } from "@shared/modules/auth/auth.service";
 import { RedisCache } from "apollo-server-cache-redis";
 import depthLimit from "graphql-depth-limit";
 import { PubSub } from "graphql-subscriptions";
-import GraphQLJSON, { GraphQLJSONObject } from "graphql-type-json";
 import { join } from "path";
 
 import {
@@ -45,7 +44,7 @@ export class GqlConfigService implements GqlOptionsFactory {
                 return new Promise((resolve, reject) => {
                     // Replace the `true` in this conditional with more specific checks!
                     if (true) {
-                        resolve();
+                        resolve(null);
                     } else {
                         reject();
                     }

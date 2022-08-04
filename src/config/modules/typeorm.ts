@@ -15,5 +15,20 @@ export default registerAs(
         synchronize: process.env.PG_SYNC === "true",
         logging: true,
         entities: [__dirname + "/**/**.entity{.ts,.js}"]
+        // migrations: [
+        //     __dirname +
+        //         "/../shared/infrastructure/database/typeorm/migrations/**/*.*"
+        // ],
+        // cli: {
+        //     entitiesDir:
+        //         __dirname +
+        //         "/../shared/infrastructure/database/typeorm/entities",
+        //     migrationsDir:
+        //         __dirname +
+        //         "/../shared/infrastructure/database/typeorm/migrations",
+        //     subscribersDir:
+        //         __dirname +
+        //         "/../shared/infrastructure/database/typeorm/subscribers"
+        // }
     })
 );

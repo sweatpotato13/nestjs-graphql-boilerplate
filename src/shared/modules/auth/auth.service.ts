@@ -5,6 +5,8 @@ import { RedisService } from "@shared/modules/database/redis/redis.service";
 import { genRandomBytesWithBase58 } from "@shared/utils";
 import jwt, { Algorithm } from "jsonwebtoken";
 
+import { ITokenClaim } from "./auth.interface";
+
 @Injectable()
 export class AuthService {
     public userJwtIndex = "activeJwtUsers";
@@ -15,14 +17,14 @@ export class AuthService {
         @Inject("RedisService") private readonly redis: RedisService
     ) {}
 
-    public signJwt(claims: any): string {
+    public signJwt(claims: ITokenClaim): string {
         return jwt.sign(claims, this.config.privateKey, {
             algorithm: this.config.algorithm as Algorithm,
             expiresIn: this.config.accessExpiresIn
         });
     }
 
-    public async decodeJwt(token: string): Promise<any> {
+    public async decodeJwt(token: string): Promise<ITokenClaim> {
         return new Promise(resolve => {
             jwt.verify(
                 token,
@@ -32,7 +34,7 @@ export class AuthService {
                 },
                 (err, decoded) => {
                     if (err) return resolve(null);
-                    return resolve(decoded as any);
+                    return resolve(decoded as ITokenClaim);
                 }
             );
         });
